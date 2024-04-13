@@ -11,8 +11,6 @@ import ChainProfile from '@/layouts/components/ChainProfile.vue';
 import { useDashboard } from '@/stores/useDashboard';
 import { useBaseStore, useBlockchain } from '@/stores';
 
-import NavBarI18n from './NavBarI18n.vue';
-import NavBarWallet from './NavBarWallet.vue';
 import type { NavGroup, NavLink, NavSectionTitle, VerticalNavItems } from '../types';
 import dayjs from 'dayjs';
 
@@ -82,7 +80,7 @@ dayjs()
         <RouterLink to="/" class="flex items-center">
           <img class="w-10 h-10" src="../../assets/logo.svg" />
           <h1 class="flex-1 ml-3 text-2xl font-semibold dark:text-white">
-            Ping.pub
+            Luganodes
           </h1>
         </RouterLink>
         <div
@@ -184,147 +182,9 @@ dayjs()
           </div>
         </div>
 
-        <RouterLink
-          v-if="isNavLink(item)"
-          :to="item?.to"
-          @click="sidebarShow = false"
-          class="cursor-pointer rounded-lg px-4 flex items-center py-2 hover:bg-gray-100 dark:hover:bg-[#373f59]"
-        >
-          <Icon
-            v-if="item?.icon?.icon"
-            :icon="item?.icon?.icon"
-            class="text-xl mr-2"
-            :class="{
-              'text-yellow-500': item?.title === 'Favorite',
-              'text-blue-500': item?.title !== 'Favorite',
-            }"
-          />
-          <img
-            v-if="item?.icon?.image"
-            :src="item?.icon?.image"
-            class="w-6 h-6 rounded-full mr-3 border border-blue-100"
-          />
-          <div
-            class="text-base capitalize flex-1 text-gray-700 dark:text-gray-200 whitespace-nowrap"
-          >
-            {{ item?.title }}
-          </div>
-          <div
-            v-if="item?.badgeContent"
-            class="badge badge-sm text-white border-none" 
-            :class="item?.badgeClass"
-          >
-            {{ item?.badgeContent }}
-          </div>
-        </RouterLink>
-        <div
-          v-if="isNavTitle(item)"
-          class="px-4 text-sm text-gray-400 pb-2 uppercase"
-        >
-          {{ item?.heading }}
-        </div>
+        
       </div>
-      <div class="px-2">
-          <div class="px-4 text-sm pt-2 text-gray-400 pb-2 uppercase">
-            Tools
-          </div>
-          <RouterLink to="/wallet/suggest"
-          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]"
-          >
-            <Icon icon="mdi:frequently-asked-questions" class="text-xl mr-2" />
-            <div
-              class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
-            >
-              Wallet Helper
-            </div>
-          </RouterLink>
-          <div class="px-4 text-sm pt-2 text-gray-400 pb-2 uppercase">
-          {{ $t('module.sponsors') }}
-        </div>
-        <a
-          href="https://osmosis.zone"
-          target="_blank"
-          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]"
-        >
-          <img
-            src="https://ping.pub/logos/osmosis.jpg"
-            class="w-6 h-6 rounded-full mr-3"
-          />
-          <div
-            class="text-sm capitalize flex-1 text-gray-600 dark:text-gray-200"
-          >
-            Osmosis
-          </div>
-        </a>
-        <a
-          href="https://celestia.org"
-          target="_blank"
-          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]"
-        >
-          <img
-            src="https://ping.pub/logos/celestia.png"
-            class="w-6 h-6 rounded-full mr-3"
-          />
-          <div
-            class="text-sm capitalize flex-1 text-gray-600 dark:text-gray-200"
-          >
-            Celestia
-          </div>
-        </a>
-        <a
-          href="https://becole.com"
-          target="_blank"
-          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]"
-        >
-          <img
-            src="https://becole.com/static/logo/logo_becole.png"
-            class="w-6 h-6 rounded-full mr-3"
-          />
-          <div
-            class="text-sm capitalize flex-1 text-gray-600 dark:text-gray-200"
-          >
-            Becole
-          </div>
-        </a>
-        <div class="px-4 text-sm pt-2 text-gray-400 pb-2 uppercase">{{ $t('module.links') }}</div>
-        <a
-          href="https://twitter.com/ping_pub"
-          target="_blank"
-          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]"
-        >
-          <Icon icon="mdi:twitter" class="text-xl mr-2" />
-          <div
-            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
-          >
-            Twitter
-          </div>
-        </a>
-        <a
-          v-if="showDiscord"
-          href="https://discord.com/invite/CmjYVSr6GW"
-          target="_blank"
-          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]"
-        >
-          <Icon icon="mdi:discord" class="text-xl mr-2" />
-          <div
-            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
-          >
-            Discord
-          </div>
-        </a>
-        <a
-          href="https://github.com/ping-pub/explorer/discussions"
-          target="_blank"
-          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]"
-        >
-          <Icon icon="mdi:frequently-asked-questions" class="text-xl mr-2" />
-          <div
-            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
-          >
-            FAQ
-          </div>
-        </a>
-      </div>
+   
     </div>
     <div class="xl:!ml-64 px-3 pt-4">
       <!-- header -->
@@ -343,10 +203,8 @@ dayjs()
         <div class="flex-1 w-0"></div>
 
         <!-- <NavSearchBar />-->
-        <NavBarI18n class="hidden md:!inline-block" />
         <NavbarThemeSwitcher class="!inline-block" />
         <NavbarSearch class="!inline-block" />
-        <NavBarWallet />
       </div>
 
       <!-- 👉 Pages -->
@@ -368,7 +226,6 @@ dayjs()
         </RouterView>
       </div>
 
-      <newFooter />
     </div>
   </div>
 </template>
